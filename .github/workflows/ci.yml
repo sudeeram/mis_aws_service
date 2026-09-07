@@ -38,6 +38,9 @@ jobs:
       - uses: astral-sh/setup-uv@v9
         with:
           enable-cache: true
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y default-libmysqlclient-dev pkg-config
       - run: uv sync --frozen
       - run: uv run python manage.py migrate --noinput
       - run: uv run python manage.py check
